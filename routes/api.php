@@ -28,3 +28,16 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 
 });
+
+Route::group([
+
+    'middleware' => 'jwt.auth',
+    'prefix' => 'test'
+
+], function ($router) {
+
+    Route::get('acesso', function(){
+        return response()->json('Autenticado', 200);
+    });
+
+});
